@@ -2,17 +2,20 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "assets/*": [
+        "./src/Assets/*"
+      ],
       "utils/*": [
         "./src/Utils/*"
+      ],
+      "frontend/*": [
+        "./src/Frontend/*"
       ],
       "backend/*": [
         "./src/Backend/*"
       ],
-      "assets/*": [
-        "./src/Assets/*"
-      ],
-      "frontend/*": [
-        "./src/Frontend/*"
+      "navigation/*": [
+        "./src/Navigation/*"
       ]
     }
   },

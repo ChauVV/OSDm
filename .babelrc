@@ -13,10 +13,11 @@
           ".android.js"
         ],
         "alias": {
+          "assets": "./src/Assets",
           "utils": "./src/Utils",
           "backend": "./src/Backend",
-          "assets": "./src/Assets",
-          "frontend": "./src/Frontend"
+          "frontend": "./src/Frontend",
+          "navigation": "./src/Navigation"
         }
       }
     ]

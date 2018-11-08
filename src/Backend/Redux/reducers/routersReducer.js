@@ -1,6 +1,6 @@
 
-import { RootNavigator } from 'frontend/AppNavigator'
-import { NavigationActions, StackActions } from 'react-navigation'
+import { RootNavigator } from 'navigation/AppNavigator'
+import { NavigationactionsType, StackactionsType } from 'react-navigation'
 
 const getActiveRoute = (state) => {
   if (state.index !== undefined) {
@@ -16,7 +16,7 @@ export default function routers (state, action) {
     if (action.routeName === lastRoute.routeName) {
       return state
     }
-    let newState = RootNavigator.router.getStateForAction(NavigationActions.navigate({
+    let newState = RootNavigator.router.getStateForAction(NavigationactionsType.navigate({
       routeName: action.routeName, params: action.params
     }), state)
     return (newState || state)
@@ -26,7 +26,7 @@ export default function routers (state, action) {
     if (lastRoute.routeName === 'MainScreen' || lastRoute.routeName === 'Login') {
       return state
     }
-    let newState = RootNavigator.router.getStateForAction(NavigationActions.back(), state)
+    let newState = RootNavigator.router.getStateForAction(NavigationactionsType.back(), state)
     return (newState || state)
   }
   case 'popToTop': {
@@ -34,15 +34,15 @@ export default function routers (state, action) {
     if (lastRoute.routeName === 'MainScreen' || lastRoute.routeName === 'Login') {
       return state
     }
-    let newState = RootNavigator.router.getStateForAction(StackActions.popToTop(), state)
+    let newState = RootNavigator.router.getStateForAction(StackactionsType.popToTop(), state)
     return (newState || state)
   }
   case 'resetToRoute': {
-    const newState = RootNavigator.router.getStateForAction(StackActions.reset({
+    const newState = RootNavigator.router.getStateForAction(StackactionsType.reset({
       index: 0,
       key: action.key,
-      actions: [
-        NavigationActions.navigate({routeName: action.routeName, params: action.params})
+      actionsType: [
+        NavigationactionsType.navigate({routeName: action.routeName, params: action.params})
       ]
     }), state)
     return newState || state }
