@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import {
-  StyleSheet, View, Image
+  StyleSheet, View, Image, Text
 } from 'react-native'
 import Images from 'assets/Images'
 import { connect } from 'react-redux'
@@ -22,6 +22,7 @@ class SplashScreen extends Component {
           source={Images.imgSplashScreen}
           resizeMode={ISIOS ? 'cover' : 'stretch'}
         />
+        <Text style={styles.text}>abc</Text>
       </View>
     )
   }
@@ -46,5 +47,9 @@ const styles = StyleSheet.create({
   img: {
     width: '100%',
     height: '100%'
+  },
+  text: {
+    position: 'absolute',
+    bottom: 20
   }
 })
