@@ -2,7 +2,7 @@ import React from 'react'
 import {
   View, StatusBar} from 'react-native'
 import {connect} from 'react-redux'
-import { AppNavigator } from 'navigation/AppNavigator'
+import { AppNavigator } from 'frontend/Container/AppNavigator'
 
 class MainLayout extends React.Component {
   render () {

@@ -13,9 +13,6 @@
       ],
       "backend/*": [
         "./src/Backend/*"
-      ],
-      "navigation/*": [
-        "./src/Navigation/*"
       ]
     }
   },
