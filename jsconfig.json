@@ -8,11 +8,11 @@
       "utils/*": [
         "./src/Utils/*"
       ],
-      "frontend/*": [
-        "./src/Frontend/*"
+      "gui/*": [
+        "./src/Gui/*"
       ],
-      "backend/*": [
-        "./src/Backend/*"
+      "reduxer/*": [
+        "./src/Reduxer/*"
       ]
     }
   },

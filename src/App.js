@@ -1,18 +1,31 @@
 import React from 'react'
 
-import storeRedux from 'backend/Redux/store'
-// import * as actionsType from 'backend/Redux/actionsType/globalactionsType'
-// import init from 'backend/Redux/lib/initState'
-// import { checkLocalStoreToRedux } from 'backend/Redux/lib/reducerConfig'
+import storeRedux from 'reduxer/store'
 import { Provider } from 'react-redux'
-import MainLayout from 'frontend/Container/MainLayout'
+
+import {
+  View, StatusBar, StyleSheet
+} from 'react-native'
+import { AppNavigator } from 'gui/AppNavigator'
 
 const App = () => {
   return (
     <Provider store={storeRedux}>
-      <MainLayout/>
+      <View style={styles.base}>
+        <StatusBar
+          barStyle="light-content"
+          translucent
+          backgroundColor="transparent"/>
+        <View style={styles.base}>
+          <AppNavigator />
+        </View>
+      </View>
     </Provider>
   )
 }
-
+const styles = StyleSheet.create({
+  base: {
+    flex: 1
+  }
+})
 export default App

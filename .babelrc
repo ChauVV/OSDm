@@ -15,8 +15,8 @@
         "alias": {
           "assets": "./src/Assets",
           "utils": "./src/Utils",
-          "backend": "./src/Backend",
-          "frontend": "./src/Frontend"
+          "reduxer": "./src/Reduxer",
+          "gui": "./src/Gui"
         }
       }
     ]
