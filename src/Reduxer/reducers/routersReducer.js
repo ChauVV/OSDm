@@ -9,7 +9,7 @@ const getActiveRoute = (state) => {
     return state
   }
 }
-export default function routers (state, action) {
+export default (state, action) => {
   switch (action.type) {
   case 'push': {
     const lastRoute = getActiveRoute(state)

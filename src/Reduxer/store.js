@@ -7,15 +7,14 @@ import epics from 'reduxer/epics'
 import reducers from 'reduxer/reducers'
 
 // Create middlewares
-const navigationMiddleware = createReactNavigationReduxMiddleware(
-  'root',
-  state => state.navigate
-)
+const navigationMiddleware = createReactNavigationReduxMiddleware('root', state => state.navigate)
+const epicMiddleware = createEpicMiddleware(epics)
 
 const middlewares = [
-  createEpicMiddleware(epics),
+  epicMiddleware,
   navigationMiddleware
 ]
+
 if (process.env.NODE_ENV === `development`) {
   middlewares.push(loggerMiddleware)
 }

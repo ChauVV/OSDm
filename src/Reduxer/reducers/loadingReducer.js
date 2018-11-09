@@ -1,6 +1,6 @@
 import { actionsType } from 'utils/reduxConstants'
 
-export default function (state = false, action) {
+export default (state = false, action) => {
   switch (action.type) {
   case actionsType.FETCH_USER:
     return true
