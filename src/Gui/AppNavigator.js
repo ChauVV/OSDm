@@ -10,14 +10,8 @@ import DrawerContent from 'gui/Screens/DrawerContent'
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation'
 
 import {
-  reduxifyNavigator,
-  createReactNavigationReduxMiddleware
+  reduxifyNavigator
 } from 'react-navigation-redux-helpers'
-
-const middlewareNav = createReactNavigationReduxMiddleware(
-  'root',
-  state => state.navigate
-)
 
 const MainNavigator = createStackNavigator({
   MainScreen: { screen: MainScreen },
@@ -43,6 +37,7 @@ const Drawer = createDrawerNavigator({
   contentComponent: DrawerContent,
   drawerWidth: 300
 })
+
 const RootNavigator = createStackNavigator({
   SplashScreen: { screen: SplashScreen },
   Login: {
@@ -69,4 +64,4 @@ const mapStateToProps = state => ({
 
 const AppNavigator = connect(mapStateToProps)(AppWithNavigationState)
 
-export { RootNavigator, AppNavigator, middlewareNav }
+export { RootNavigator, AppNavigator }

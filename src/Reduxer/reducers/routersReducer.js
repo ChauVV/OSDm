@@ -1,6 +1,6 @@
 
 import { RootNavigator } from 'gui/AppNavigator'
-import { NavigationactionsType, StackactionsType } from 'react-navigation'
+import { NavigationActions, StackactionsType } from 'react-navigation'
 
 const getActiveRoute = (state) => {
   if (state.index !== undefined) {
@@ -16,7 +16,7 @@ export default (state, action) => {
     if (action.routeName === lastRoute.routeName) {
       return state
     }
-    let newState = RootNavigator.router.getStateForAction(NavigationactionsType.navigate({
+    let newState = RootNavigator.router.getStateForAction(NavigationActions.navigate({
       routeName: action.routeName, params: action.params
     }), state)
     return (newState || state)
@@ -26,7 +26,7 @@ export default (state, action) => {
     if (lastRoute.routeName === 'MainScreen' || lastRoute.routeName === 'Login') {
       return state
     }
-    let newState = RootNavigator.router.getStateForAction(NavigationactionsType.back(), state)
+    let newState = RootNavigator.router.getStateForAction(NavigationActions.back(), state)
     return (newState || state)
   }
   case 'popToTop': {
@@ -42,7 +42,7 @@ export default (state, action) => {
       index: 0,
       key: action.key,
       actionsType: [
-        NavigationactionsType.navigate({routeName: action.routeName, params: action.params})
+        NavigationActions.navigate({routeName: action.routeName, params: action.params})
       ]
     }), state)
     return newState || state }

@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import {
-  StyleSheet, View, Image, Text
+  StyleSheet, View, Image
 } from 'react-native'
 import Images from 'assets/Images'
 import { connect } from 'react-redux'
@@ -12,11 +12,13 @@ import { actionsType } from 'utils/reduxConstants'
 
 class SplashScreen extends Component {
   componentDidMount () {
-    this.props.fetchUsers()
+    setTimeout(
+      () =>
+        this.props.checkAuthen()
+      , 2000
+    )
   }
   render () {
-    const { users, places } = this.props
-
     return (
       <View style={styles.container}>
         <Image
@@ -24,25 +26,15 @@ class SplashScreen extends Component {
           source={Images.imgSplashScreen}
           resizeMode={ISIOS ? 'cover' : 'stretch'}
         />
-        <Text style={styles.text}>abc</Text>
-        {users.length > 0 &&
-          <Text style={styles.textUser}>{`Has ${users.length} users`}</Text>
-        }
-        {places.length > 0 &&
-          <Text style={styles.textPlace}>{`Has ${places.length} places`}</Text>
-        }
       </View>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  users: state.users,
-  places: state.places
 })
 const mapactionsTypeToProps = (dispatch) => ({
-  fetchUsers: () => dispatch({ type: actionsType.FETCH_USER }),
-  updateUser: (users) => dispatch({ type: actionsType.UPDATE_USER_SUCCESS, payload: users })
+  checkAuthen: () => dispatch({ type: actionsType.CHECK_AUTHEN })
 })
 export default connect(mapStateToProps, mapactionsTypeToProps)(SplashScreen)
 
@@ -58,17 +50,5 @@ const styles = StyleSheet.create({
   img: {
     width: '100%',
     height: '100%'
-  },
-  text: {
-    position: 'absolute',
-    bottom: 10
-  },
-  textUser: {
-    position: 'absolute',
-    bottom: 30
-  },
-  textPlace: {
-    position: 'absolute',
-    bottom: 50
   }
 })
