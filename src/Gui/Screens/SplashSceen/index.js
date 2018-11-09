@@ -5,17 +5,18 @@ import {
 } from 'react-native'
 import Images from 'assets/Images'
 import { connect } from 'react-redux'
+import SplashScreen from 'react-native-splash-screen'
 
-import { ISIOS, width, height } from 'utils/globalStyles'
-import { isIphoneX } from 'react-native-iphone-x-helper'
+import { width, height, COLORS } from 'utils/globalStyles'
 import { actionsType } from 'utils/reduxConstants'
 
-class SplashScreen extends Component {
+class SplashScreenRN extends Component {
   componentDidMount () {
+    SplashScreen.hide()
     setTimeout(
       () =>
         this.props.checkAuthen()
-      , 2000
+      , 6000
     )
   }
   render () {
@@ -23,8 +24,8 @@ class SplashScreen extends Component {
       <View style={styles.container}>
         <Image
           style={styles.img}
-          source={Images.imgSplashScreen}
-          resizeMode={ISIOS ? 'cover' : 'stretch'}
+          source={Images.icWindyWhite}
+          resizeMode='center'
         />
       </View>
     )
@@ -36,7 +37,7 @@ const mapStateToProps = (state) => ({
 const mapactionsTypeToProps = (dispatch) => ({
   checkAuthen: () => dispatch({ type: actionsType.CHECK_AUTHEN })
 })
-export default connect(mapStateToProps, mapactionsTypeToProps)(SplashScreen)
+export default connect(mapStateToProps, mapactionsTypeToProps)(SplashScreenRN)
 
 const styles = StyleSheet.create({
   container: {
@@ -44,11 +45,12 @@ const styles = StyleSheet.create({
     width: width(100),
     height: height(100),
     alignItems: 'center',
-    backgroundColor: 'white',
-    paddingTop: ISIOS ? isIphoneX() ? 46 : 20 : 0
+    justifyContent: 'center',
+    backgroundColor: COLORS.BACKGROUND_COLOR
   },
   img: {
-    width: '100%',
-    height: '100%'
+    alignSelf: 'center',
+    width: 240,
+    height: 128
   }
 })

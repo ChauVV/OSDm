@@ -30,9 +30,10 @@ export const txtDefault = {
 
 export const COLORS = {
   RED: '#C21B17',
-  BACKGROUND_COLOR: 'rgb(248, 253, 254)',
+  BACKGROUND_COLOR: '#FF7043',
   LINE: '#a5abaf',
-  TEXT: '#333'
+  TEXT: 'white',
+  PING: '#FF7043'
 }
 const styles = StyleSheet.create({
   backgroundDefault: {

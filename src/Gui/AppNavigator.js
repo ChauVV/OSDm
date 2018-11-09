@@ -10,9 +10,13 @@ import DrawerContent from 'gui/Screens/DrawerContent'
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation'
 
 import {
-  reduxifyNavigator
+  reduxifyNavigator,
+  createReactNavigationReduxMiddleware
 } from 'react-navigation-redux-helpers'
-
+const middlewareNav = createReactNavigationReduxMiddleware(
+  'root',
+  state => state.navigate
+)
 const MainNavigator = createStackNavigator({
   MainScreen: { screen: MainScreen },
   A: { screen: A },
@@ -64,4 +68,4 @@ const mapStateToProps = state => ({
 
 const AppNavigator = connect(mapStateToProps)(AppWithNavigationState)
 
-export { RootNavigator, AppNavigator }
+export { RootNavigator, AppNavigator, middlewareNav }
