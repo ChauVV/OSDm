@@ -9,7 +9,7 @@ import reducers from 'reduxer/reducers'
 // Create middlewares
 const navigationMiddleware = createReactNavigationReduxMiddleware(
   'root',
-  state => state.nav
+  state => state.navigate
 )
 
 const middlewares = [

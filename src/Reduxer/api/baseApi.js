@@ -6,7 +6,7 @@ import axios from 'axios'
 * @param      : body: object
 * @param      : header: object
 * @return     : promise
-* @author     : Jack   2018-11-09 10:19:19
+* @author     : Jack 2018-11-09 10:19:19
 * @description: description
 * ------------------------------------------- */
 export const get = (url = '', body = null, header = {}) => {

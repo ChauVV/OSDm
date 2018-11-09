@@ -1,7 +1,7 @@
 
 import { Observable } from 'rxjs'
 import ServerAPI from 'reduxer/api'
-import { actionsType, TIME_OUT, ttError, strMessageTimeout } from 'utils/reduxConstants'
+import { actionsType, TIME_OUT, ttError, strMessageTimeout, statusCode } from 'utils/reduxConstants'
 
 export default (action$, store) => {
   const fetchRooms$ = action$.ofType(actionsType.FETCH_PLACES).switchMap((action) => {
@@ -11,17 +11,17 @@ export default (action$, store) => {
         .takeUntil(action$.ofType(actionsType.CANCEL_FETCHING_PLACES)) // Listen cancel action
         .mergeMap((response) => { // Process data response
           if (response) {
-            if (response.status === 200) {
+            if (response.status === statusCode.CODE_200) { // Ok
               return Observable.concat(
                 Observable.of({ type: actionsType.FETCH_PLACES_SUCCESS, payload: response.data })
               )
-            } else {
+            } else { // Err
               return Observable.concat(
                 Observable.of({ type: actionsType.FETCH_PLACES_FAIL })
               )
             }
-          } else {
-            ServerAPI.showAlert(ttError, strMessageTimeout) // Error timeout
+          } else { // Err timeout
+            ServerAPI.showAlert(ttError, strMessageTimeout)
             return Observable.concat(
               Observable.of({ type: actionsType.FETCH_PLACES_FAIL })
             )
@@ -29,9 +29,6 @@ export default (action$, store) => {
         })
     )
   })
-    .catch(error => {
-      console.log('error: ', error)
-    })
 
   return Observable.merge(
     fetchRooms$

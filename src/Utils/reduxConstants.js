@@ -1,4 +1,8 @@
 export const actionsType = {
+  // CURRENCY
+  SET_CURRENCY: 'SET_CURRENCY',
+  // LANGUAGE
+  SET_LANGUGAE: 'SET_LANGUGAE',
   // USERS
   FETCH_USER: 'FETCH_USER',
   FETCH_USER_FAIL: 'FETCH_USER_FAIL',
@@ -15,6 +19,8 @@ export const actionsType = {
   CANCEL_FETCHING_PLACES: 'CANCEL_FETCHING_PLACES'
 }
 export const initState = {
+  currency: 'VND',
+  language: 'vi',
   users: [],
   places: []
 }
@@ -34,3 +40,12 @@ export const ttInfor = 'Thông báo'
  * strMessageTimeout
  */
 export const strMessageTimeout = 'Không thể kết nối server!'
+/**
+ * statusCode
+ */
+export const statusCode = {
+  CODE_200: 200, // ok
+  CODE_201: 201, // ok
+  CODE_404: 404, // Not found
+  CODE_500: 500 // Server error
+}

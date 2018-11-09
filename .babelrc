@@ -16,7 +16,7 @@
           "assets": "./src/Assets",
           "utils": "./src/Utils",
           "reduxer": "./src/Reduxer",
-          "frontend": "./src/Frontend"
+          "gui": "./src/Gui"
         }
       }
     ]

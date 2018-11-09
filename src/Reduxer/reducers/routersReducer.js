@@ -1,5 +1,5 @@
 
-import { RootNavigator } from 'frontend/Container/AppNavigator'
+import { RootNavigator } from 'gui/AppNavigator'
 import { NavigationactionsType, StackactionsType } from 'react-navigation'
 
 const getActiveRoute = (state) => {

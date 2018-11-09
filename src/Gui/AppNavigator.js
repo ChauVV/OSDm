@@ -1,12 +1,12 @@
 
 import { connect } from 'react-redux'
-import SplashScreen from 'frontend/Screens/SplashScreen'
-import LoginScreen from 'frontend/Screens/LoginScreen'
-import MainScreen from 'frontend/Screens/MainScreen'
-import A from 'frontend/Screens/A'
-import B from 'frontend/Screens/B'
-import C from 'frontend/Screens/C'
-import DrawerContent from 'frontend/Screens/DrawerContent'
+import SplashScreen from 'gui/Screens/SplashSceen'
+import LoginScreen from 'gui/Screens/LoginScreen'
+import MainScreen from 'gui/Screens/MainScreen'
+import A from 'gui/Screens/A'
+import B from 'gui/Screens/B'
+import C from 'gui/Screens/C'
+import DrawerContent from 'gui/Screens/DrawerContent'
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation'
 
 import {
@@ -16,7 +16,7 @@ import {
 
 const middlewareNav = createReactNavigationReduxMiddleware(
   'root',
-  state => state.nav
+  state => state.navigate
 )
 
 const MainNavigator = createStackNavigator({
@@ -64,7 +64,7 @@ const RootNavigator = createStackNavigator({
 const AppWithNavigationState = reduxifyNavigator(RootNavigator, 'root')
 
 const mapStateToProps = state => ({
-  state: state.nav
+  state: state.navigate
 })
 
 const AppNavigator = connect(mapStateToProps)(AppWithNavigationState)
