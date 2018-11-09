@@ -3,8 +3,8 @@ import {createEpicMiddleware} from 'redux-observable'
 import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers'
 import loggerMiddleware from 'redux-logger'
 
-import epics from './epics'
-import reducers from './reducers'
+import epics from 'reduxer/epics'
+import reducers from 'reduxer/reducers'
 
 // Create middlewares
 const navigationMiddleware = createReactNavigationReduxMiddleware(

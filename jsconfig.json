@@ -11,8 +11,8 @@
       "frontend/*": [
         "./src/Frontend/*"
       ],
-      "backend/*": [
-        "./src/Backend/*"
+      "reduxer/*": [
+        "./src/Reduxer/*"
       ]
     }
   },

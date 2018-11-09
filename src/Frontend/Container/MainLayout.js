@@ -1,15 +1,12 @@
 import React from 'react'
 import {
-  View, StatusBar} from 'react-native'
+  View, StatusBar, StyleSheet
+} from 'react-native'
 import {connect} from 'react-redux'
 import { AppNavigator } from 'frontend/Container/AppNavigator'
 
 class MainLayout extends React.Component {
   render () {
-    // const {
-    //   showGlobalIndicator
-    // } = this.props
-
     return <View style={styles.base}>
       <StatusBar
         barStyle="light-content"
@@ -18,16 +15,16 @@ class MainLayout extends React.Component {
       <View style={styles.base}>
         <AppNavigator />
       </View>
-      {/* {showGlobalIndicator ? <IndicatorDialog message={'Vui lòng chờ...'}/> : null} */}
     </View>
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   base: {
     flex: 1
   }
-}
+})
+
 const mapStateToProps = (state) => ({
 })
 const mapactionsTypeToProps = (dispatch) => ({

@@ -1,8 +1,8 @@
 import {combineEpics} from 'redux-observable'
-// import {counterEpic} from './counterEpic'
+import placesEpic from './placesEpic'
 import usersEpic from './usersEpic'
 
 export default combineEpics(
-  // counterEpic,
+  placesEpic,
   usersEpic
 )

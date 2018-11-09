@@ -15,6 +15,8 @@ class SplashScreen extends Component {
     this.props.fetchUsers()
   }
   render () {
+    const { users, places } = this.props
+
     return (
       <View style={styles.container}>
         <Image
@@ -23,15 +25,24 @@ class SplashScreen extends Component {
           resizeMode={ISIOS ? 'cover' : 'stretch'}
         />
         <Text style={styles.text}>abc</Text>
+        {users.length > 0 &&
+          <Text style={styles.textUser}>{`Has ${users.length} users`}</Text>
+        }
+        {places.length > 0 &&
+          <Text style={styles.textPlace}>{`Has ${places.length} places`}</Text>
+        }
       </View>
     )
   }
 }
+
 const mapStateToProps = (state) => ({
-  // internet: state.internet
+  users: state.users,
+  places: state.places
 })
 const mapactionsTypeToProps = (dispatch) => ({
-  fetchUsers: () => dispatch({ type: actionsType.FETCH_USER })
+  fetchUsers: () => dispatch({ type: actionsType.FETCH_USER }),
+  updateUser: (users) => dispatch({ type: actionsType.UPDATE_USER_SUCCESS, payload: users })
 })
 export default connect(mapStateToProps, mapactionsTypeToProps)(SplashScreen)
 
@@ -50,6 +61,14 @@ const styles = StyleSheet.create({
   },
   text: {
     position: 'absolute',
-    bottom: 20
+    bottom: 10
+  },
+  textUser: {
+    position: 'absolute',
+    bottom: 30
+  },
+  textPlace: {
+    position: 'absolute',
+    bottom: 50
   }
 })
