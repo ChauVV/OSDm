@@ -1,27 +1,37 @@
 
-import { connect } from 'react-redux'
-import SplashScreen from 'gui/Screens/SplashSceen'
-import LoginScreen from 'gui/Screens/LoginScreen'
-import MainScreen from 'gui/Screens/MainScreen'
-import A from 'gui/Screens/A'
-import B from 'gui/Screens/B'
-import C from 'gui/Screens/C'
-import DrawerContent from 'gui/Screens/DrawerContent'
-import { createStackNavigator, createDrawerNavigator } from 'react-navigation'
-
 import {
   reduxifyNavigator,
   createReactNavigationReduxMiddleware
 } from 'react-navigation-redux-helpers'
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation'
+import { connect } from 'react-redux'
+import SplashScreen from 'gui/Screens/SplashSceen'
+import LoginScreen from 'gui/Screens/LoginScreen'
+import HomeScreen from 'gui/Screens/HomeScreen'
+import Setting from 'gui/Screens/Setting'
+import Detail from 'gui/Screens/Detail'
+import DrawerContent from 'gui/Screens/DrawerContent'
+import MainTabbar from 'gui/Screens/MainTabbar'
+
 const middlewareNav = createReactNavigationReduxMiddleware(
   'root',
   state => state.navigate
 )
+const HomeStack = createStackNavigator({
+  HomeScreen: { screen: HomeScreen },
+  Detail: { screen: Detail }
+}, {
+  headerMode: 'none'
+})
+const SettingStack = createStackNavigator({
+  SettingScreen: { screen: Setting }
+}, {
+  headerMode: 'none'
+})
 const MainNavigator = createStackNavigator({
-  MainScreen: { screen: MainScreen },
-  A: { screen: A },
-  B: { screen: B },
-  C: { screen: C }
+  MainTabbar: MainTabbar,
+  HomeStack: HomeStack,
+  SettingStack: SettingStack
 }, {
   headerMode: 'none'
 })
@@ -29,7 +39,7 @@ const MainNavigator = createStackNavigator({
 MainNavigator.navigationOptions = ({ navigation }) => navigation.state.index === 0 ? { drawerLockMode: 'unlocked' } : { drawerLockMode: 'locked-closed' } // Only open drawer for main screen
 
 const Drawer = createDrawerNavigator({
-  MainScreens: {
+  MainTabbar: {
     screen: MainNavigator,
     navigationOptions: {
       gesturesEnabled: true
@@ -61,7 +71,6 @@ const RootNavigator = createStackNavigator({
 })
 
 const AppWithNavigationState = reduxifyNavigator(RootNavigator, 'root')
-
 const mapStateToProps = state => ({
   state: state.navigate
 })

@@ -1,48 +1,46 @@
 
 import React, {Component} from 'react'
 import {
-  StyleSheet, View, Image, Text
+  StyleSheet, View, Text, TouchableOpacity
 } from 'react-native'
-import Images from 'assets/Images'
 import { connect } from 'react-redux'
 
-import { ISIOS, width, height } from 'utils/globalStyles'
-import { isIphoneX } from 'react-native-iphone-x-helper'
+import { width, height, COLORS } from 'utils/globalStyles'
 import { actionsType } from 'utils/reduxConstants'
+import Header from 'gui/Components/Header'
 
 class LoginScreen extends Component {
   componentDidMount () {
-    this.props.fetchUsers()
+    // this.props.fetchUsers()
   }
   render () {
-    const { users, places } = this.props
+    const { userState, login } = this.props
 
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.img}
-          source={Images.imgSplashScreen}
-          resizeMode={ISIOS ? 'cover' : 'stretch'}
-        />
-        <Text style={styles.text}>LoginScreen</Text>
-        {users.length > 0 &&
-          <Text style={styles.textUser}>{`Has ${users.length} users`}</Text>
+        <Header title={'Login'}/>
+        {userState.isLoading && <Text style={styles.txtLoading}>loading...</Text>}
+        {userState.users.length > 0 &&
+            <Text style={styles.textUser}>{`Has ${userState.users.length} users`}</Text>
         }
-        {places.length > 0 &&
-          <Text style={styles.textPlace}>{`Has ${places.length} places`}</Text>
-        }
+        <TouchableOpacity
+          onPress={() => login()}
+          style={styles.btnLogin}>
+          <Text style={styles.txtBtn}>Login</Text>
+        </TouchableOpacity>
+
       </View>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  users: state.users,
-  places: state.places
+  userState: state.userState
 })
 const mapactionsTypeToProps = (dispatch) => ({
-  fetchUsers: () => dispatch({ type: actionsType.FETCH_USER }),
-  updateUser: (users) => dispatch({ type: actionsType.UPDATE_USER_SUCCESS, payload: users })
+  fetchUsers: () => dispatch({ type: actionsType.FETCH_USER, payload: { users: [], isLoading: true } }),
+  updateUser: (users) => dispatch({ type: actionsType.UPDATE_USER_SUCCESS, payload: users }),
+  login: () => dispatch({ type: actionsType.LOGIN })
 })
 export default connect(mapStateToProps, mapactionsTypeToProps)(LoginScreen)
 
@@ -52,23 +50,27 @@ const styles = StyleSheet.create({
     width: width(100),
     height: height(100),
     alignItems: 'center',
-    backgroundColor: 'white',
-    paddingTop: ISIOS ? isIphoneX() ? 46 : 20 : 0
+    justifyContent: 'center',
+    backgroundColor: '#e0f2f1'
   },
-  img: {
-    width: '100%',
-    height: '100%'
+  btnLogin: {
+    width: width(50),
+    height: height(10),
+    backgroundColor: COLORS.BACKGROUND_COLOR,
+    borderRadius: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  text: {
+  txtBtn: {
+    color: COLORS.TEXT
+  },
+  txtLoading: {
     position: 'absolute',
-    bottom: 10
+    top: 100
   },
   textUser: {
     position: 'absolute',
     bottom: 30
-  },
-  textPlace: {
-    position: 'absolute',
-    bottom: 50
   }
 })

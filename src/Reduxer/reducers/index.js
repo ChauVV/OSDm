@@ -5,12 +5,13 @@ import routesReducer from './routersReducer'
 import placesReducer from './placesReducer'
 import languageReducer from './languageReducer'
 import currencyReducer from './currencyReducer'
-
+import loginInfoReducer from './loginInfoReducer'
 export default combineReducers({
   currency: currencyReducer,
   language: languageReducer,
-  users: userReducer,
+  userState: userReducer,
   places: placesReducer,
   loading: loadingReducer,
-  navigate: routesReducer
+  navigate: routesReducer,
+  loginInfo: loginInfoReducer
 })

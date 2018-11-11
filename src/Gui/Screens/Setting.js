@@ -1,12 +1,11 @@
-
 import React, {Component} from 'react'
 import {StyleSheet, Text, View} from 'react-native'
 
-export default class MainScreen extends Component {
+export default class Setting extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native MainScreen</Text>
+        <Text style={styles.welcome}>Welcome to React Native B</Text>
       </View>
     )
   }

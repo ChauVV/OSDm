@@ -1,5 +1,8 @@
 export const actionsType = {
   // CHECK AUTHEN
+  LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT',
+  SET_TOKEN: 'SET_TOKEN',
   CHECK_AUTHEN: 'CHECK_AUTHEN',
   // CURRENCY
   SET_CURRENCY: 'SET_CURRENCY',

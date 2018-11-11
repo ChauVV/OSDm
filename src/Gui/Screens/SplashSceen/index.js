@@ -16,7 +16,7 @@ class SplashScreenRN extends Component {
     setTimeout(
       () =>
         this.props.checkAuthen()
-      , 6000
+      , 1000
     )
   }
   render () {

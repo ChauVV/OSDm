@@ -11,8 +11,10 @@ export default (action$, store) => {
       Observable.fromPromise(SimpleStore.get(KeyStore.AUTHEN_TOKEN))
         .mergeMap((token) => {
           if (token && token.length > 0) {
+            console.log('token get: ', token)
             return Observable.concat(
-              Observable.of({ type: actionsType.PUSH, routeName: RouteKey.MainScreen })
+              Observable.of({ type: actionsType.SET_TOKEN, payload: {token: token} }),
+              Observable.of({ type: actionsType.PUSH, routeName: RouteKey.MainTabbar })
             )
           } else {
             return Observable.concat(
@@ -20,6 +22,20 @@ export default (action$, store) => {
             )
           }
         })
+    )
+  })
+
+  const login$ = action$.ofType(actionsType.LOGIN).switchMap((action) => {
+    return Observable.concat(
+      Observable.of({ type: actionsType.SET_TOKEN, payload: {token: 'token_aodsifjasdf8a9sd8fauds9fa8sd'} }),
+      Observable.of({ type: actionsType.PUSH, routeName: RouteKey.MainTabbar })
+    )
+  })
+
+  const logout$ = action$.ofType(actionsType.LOGOUT).switchMap((action) => {
+    return Observable.concat(
+      Observable.of({ type: actionsType.SET_TOKEN, payload: {token: null} }),
+      Observable.of({ type: actionsType.PUSH, routeName: RouteKey.Login })
     )
   })
 
@@ -32,7 +48,7 @@ export default (action$, store) => {
           if (response) {
             if (response.status === statusCode.CODE_200) {
               return Observable.concat(
-                Observable.of({ type: actionsType.FETCH_USER_SUCCESS, payload: response.data }),
+                Observable.of({ type: actionsType.FETCH_USER_SUCCESS, payload: { users: response.data } }),
                 Observable.of({ type: actionsType.FETCH_PLACES })
               )
             } else {
@@ -52,6 +68,8 @@ export default (action$, store) => {
 
   return Observable.merge(
     fetchUser$,
-    checkAuthen$
+    checkAuthen$,
+    login$,
+    logout$
   )
 }

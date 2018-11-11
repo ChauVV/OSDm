@@ -23,7 +23,7 @@ export default (state, action) => {
   }
   case 'pop': {
     const lastRoute = getActiveRoute(state)
-    if (lastRoute.routeName === 'MainScreen' || lastRoute.routeName === 'Login') {
+    if (lastRoute.routeName === 'HomeScreen' || lastRoute.routeName === 'Login') {
       return state
     }
     let newState = RootNavigator.router.getStateForAction(NavigationActions.back(), state)
@@ -31,7 +31,7 @@ export default (state, action) => {
   }
   case 'popToTop': {
     const lastRoute = getActiveRoute(state)
-    if (lastRoute.routeName === 'MainScreen' || lastRoute.routeName === 'Login') {
+    if (lastRoute.routeName === 'HomeScreen' || lastRoute.routeName === 'Login') {
       return state
     }
     let newState = RootNavigator.router.getStateForAction(StackactionsType.popToTop(), state)
