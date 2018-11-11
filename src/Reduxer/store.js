@@ -1,18 +1,16 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import {createEpicMiddleware} from 'redux-observable'
-import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers'
 import loggerMiddleware from 'redux-logger'
-
+import { middlewareNav } from 'gui/AppNavigator'
 import epics from 'reduxer/epics'
 import reducers from 'reduxer/reducers'
 
 // Create middlewares
-const navigationMiddleware = createReactNavigationReduxMiddleware('root', state => state.navigate)
 const epicMiddleware = createEpicMiddleware(epics)
 
 const middlewares = [
   epicMiddleware,
-  navigationMiddleware
+  middlewareNav
 ]
 
 if (process.env.NODE_ENV === `development`) {

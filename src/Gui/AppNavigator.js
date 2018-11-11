@@ -1,9 +1,9 @@
-
+import React from 'react'
 import {
   reduxifyNavigator,
   createReactNavigationReduxMiddleware
 } from 'react-navigation-redux-helpers'
-import { createStackNavigator, createDrawerNavigator } from 'react-navigation'
+import { createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import SplashScreen from 'gui/Screens/SplashSceen'
 import LoginScreen from 'gui/Screens/LoginScreen'
@@ -11,7 +11,7 @@ import HomeScreen from 'gui/Screens/HomeScreen'
 import Setting from 'gui/Screens/Setting'
 import Detail from 'gui/Screens/Detail'
 import DrawerContent from 'gui/Screens/DrawerContent'
-import MainTabbar from 'gui/Screens/MainTabbar'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 const middlewareNav = createReactNavigationReduxMiddleware(
   'root',
@@ -23,23 +23,44 @@ const HomeStack = createStackNavigator({
 }, {
   headerMode: 'none'
 })
-const SettingStack = createStackNavigator({
-  SettingScreen: { screen: Setting }
-}, {
-  headerMode: 'none'
-})
-const MainNavigator = createStackNavigator({
-  MainTabbar: MainTabbar,
-  HomeStack: HomeStack,
-  SettingStack: SettingStack
-}, {
-  headerMode: 'none'
-})
+const MainNavigator = createBottomTabNavigator(
+  {
+    Home: HomeStack,
+    Settings: { screen: Setting }
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      // eslint-disable-next-line react/display-name
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state
+        let iconName
+        if (routeName === 'Home') {
+          iconName = `ios-home`
+        } else if (routeName === 'Settings') {
+          iconName = `ios-settings`
+        }
+
+        return <Icon name={iconName} style={{color: focused ? 'red' : '#7e7e7e', fontSize: 20}} />
+      }
+    }),
+    tabBarOptions: {
+      activeTintColor: 'red',
+      inactiveTintColor: 'gray'
+    }
+  }
+)
+// const MainNavigator = createStackNavigator({
+//   MainTabbar: MainTabbar,
+//   HomeStack: HomeStack,
+//   SettingScreen: { screen: Setting }
+// }, {
+//   headerMode: 'none'
+// })
 
 MainNavigator.navigationOptions = ({ navigation }) => navigation.state.index === 0 ? { drawerLockMode: 'unlocked' } : { drawerLockMode: 'locked-closed' } // Only open drawer for main screen
 
 const Drawer = createDrawerNavigator({
-  MainTabbar: {
+  MainNavigator: {
     screen: MainNavigator,
     navigationOptions: {
       gesturesEnabled: true

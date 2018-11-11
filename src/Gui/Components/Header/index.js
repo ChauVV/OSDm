@@ -12,9 +12,9 @@ export default class Header extends PureComponent {
     const {
       title = '',
       leftIcon = null,
-      iconRight = null,
-      rightAction = () => {},
-      leftAction = () => {}
+      leftAction = () => {},
+      rightIcon = null,
+      rightAction = () => {}
     } = this.props
 
     return (
@@ -32,12 +32,12 @@ export default class Header extends PureComponent {
         <View style={styles.titleContainer}>
           <Text style={styles.textHeader}>{title}</Text>
         </View>
-        { iconRight &&
+        { rightIcon &&
           <View style={styles.groubBtnRight}>
             <TouchableOpacity style={styles.icCalendar} onPress={rightAction}
               hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
             >
-              {iconRight}
+              {rightIcon}
             </TouchableOpacity>
           </View>
         }
@@ -60,9 +60,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: ISIOS ? isIphoneX() ? 34 : 12 : 0,
-    position: 'absolute',
-    top: 0
+    paddingTop: ISIOS ? isIphoneX() ? 34 : 12 : 0
   },
   textHeader: {
     fontSize: height(3.5),

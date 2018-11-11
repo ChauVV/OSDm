@@ -14,7 +14,7 @@ export default (action$, store) => {
             console.log('token get: ', token)
             return Observable.concat(
               Observable.of({ type: actionsType.SET_TOKEN, payload: {token: token} }),
-              Observable.of({ type: actionsType.PUSH, routeName: RouteKey.MainTabbar })
+              Observable.of({ type: actionsType.PUSH, routeName: RouteKey.Drawer })
             )
           } else {
             return Observable.concat(
@@ -28,7 +28,7 @@ export default (action$, store) => {
   const login$ = action$.ofType(actionsType.LOGIN).switchMap((action) => {
     return Observable.concat(
       Observable.of({ type: actionsType.SET_TOKEN, payload: {token: 'token_aodsifjasdf8a9sd8fauds9fa8sd'} }),
-      Observable.of({ type: actionsType.PUSH, routeName: RouteKey.MainTabbar })
+      Observable.of({ type: actionsType.PUSH, routeName: RouteKey.Drawer })
     )
   })
 

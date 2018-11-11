@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 
 import { width, height, COLORS } from 'utils/globalStyles'
 import { actionsType } from 'utils/reduxConstants'
-import Header from 'gui/Components/Header'
 
 class LoginScreen extends Component {
   componentDidMount () {
@@ -18,7 +17,6 @@ class LoginScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <Header title={'Login'}/>
         {userState.isLoading && <Text style={styles.txtLoading}>loading...</Text>}
         {userState.users.length > 0 &&
             <Text style={styles.textUser}>{`Has ${userState.users.length} users`}</Text>
